@@ -11,20 +11,11 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     unique: true
   },
-  username: {
+  businessName: {
     type: String,
     required: true,
     lowercase: true,
     unique: true
-  },
-  gender: {
-    type: String,
-    required: true,
-    enum: ['Male', 'Female']
-  },
-  age: {
-    type: String, 
-    required: true,
   },
   phoneNumber: {
     type: String,
@@ -41,22 +32,11 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['Admin', 'User'],
-    default: 'User'
+    enum: ['Admin', 'Artisan'],
+    default: 'Artisan'
   },
   category: {
-    type: String, // Allows users to input their job type freely
-    required: true
-  },
-  address: {
-    lga: {
-       type: String, 
-       required: true // Used in querying workers by local government
-      }, 
-    state: 
-    { type: String, 
-      required: true 
-    }
+    type: String
   },
   isLoggedIn: {
     type: Boolean,
@@ -85,6 +65,12 @@ const userSchema = new mongoose.Schema({
   subscription: {
     type: String,
     enum: ['Unlimited', 'Demo', 'Active', 'Expired'],
+    default: 'Demo'
+  },
+  subscriptionPlan: {
+    type: String,
+    enum: ['Demo', 'Regular', 'Premium'],
+    default: 'Demo'
   },
   subscriptionId: [{
     type: mongoose.SchemaTypes.ObjectId,

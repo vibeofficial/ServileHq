@@ -12,6 +12,17 @@ const subscriptionRouter = require('./routes/subscription');
 app.use(express.json());
 app.use(cors());
 
+app.use((error, req, res, next) => {
+  if (error) {
+    console.log(error);
+    res.json({
+      message: error.message
+    })
+  };
+  
+  next();
+});
+
 app.use('/v1', userRouter);
 app.use('/v1', planRouter);
 app.use('/v1', subscriptionRouter);
